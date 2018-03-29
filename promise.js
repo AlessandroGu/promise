@@ -1,5 +1,31 @@
+/*
+ * 目前工作中还没有用到promise，但是业余时间自己研究过promise，本身自己技术比较差一点，
+ * 所以之前对于promise理解的也不是很到位，单纯的认为只有当多个ajax嵌套的时候才会用到promise，
+ * 现在工作也不是很忙，花点时间把promise重新整理一下，其实也不算整理，就是把阮一峰老师的例子
+ * 拿来看一下，稍微整合一下，带点注释，如果有人看的话，能看的清楚一点。
+ * 
+ * 
+ * 
+ * promise这个技术其实很早就有了，我总觉得好像只有这两年才大规模的开始使用，我想一定是我太low了。
+ * 关于promise的详细介绍，可以查看阮一峰老师的官方文档，在这里我就不多叙述了。
+ */
 
 
+
+
+//利用promise实现异步加载图片
+function loadImageAsync(url) {
+    return new Promise(function(resolve, reject) {
+        const image = new Image();
+        image.onload = function() {
+            resolve(image);
+        }
+        image.onerror = function() {
+            reject(new Error('Could not load image at' + url));
+        }
+        image.src = url;
+    })
+}
 
 
 //利用pormise封装ajax请求，promise执行完毕以后的结果会作为参数传递到then后面的回调函数中去
