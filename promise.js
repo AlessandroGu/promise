@@ -191,3 +191,27 @@ Promise.try(database.user.get({id: userId}))
 
 
 //关于promise的总结就到这里，总结的不是很全面，很多点都漏了，等后期有时间再把遗漏的弥补上来。
+
+//关于看慕课网对promise知识点的补充
+console.log('here we go');
+new Promise (resolve => {
+    setTimeout( () => {
+        resolve('hello');
+    }, 2000);
+})
+.then( value => {
+    console.log(value);
+    console.log('everyone');
+    (function() {
+        return new Promise(resolve => {
+            setTimeout( () => {
+                console.log('Mr lince');
+                resolve('Merry ...');
+            }, 2000);
+        })
+    })();
+    return false;
+})
+.then(value => {
+    console.log(value + 'world');
+})
